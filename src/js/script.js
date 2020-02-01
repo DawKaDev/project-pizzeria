@@ -57,6 +57,7 @@
       this.id = id;
       this.data = data;
       this.renderInMenu();
+      this.initAccordion();
       //console.log('new product:', this);
     }
     renderInMenu(){
@@ -67,6 +68,32 @@
       menuContainer.appendChild(this.element);
       console.log(this);
     }
+    initAccordion(){
+      const thisProduct = this;
+      /* find the clickable trigger (the element that should react to clicking) */
+      const accordion = thisProduct.element.querySelector(select.menuProduct.clickable);
+      /* START: click event listener to trigger */
+      accordion.addEventListener('click', function(){
+        /* prevent default action for event */
+        event.preventDefault();
+        /* toggle active class on element of thisProduct */
+        thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
+        /* find all active products */
+        const activeProducts = document.querySelectorAll(select.all.menuProductsActive);
+        /* START LOOP: for each active product */
+        activeProducts.forEach(product => {
+          /* START: if the active product isn't the element of thisProduct */
+          if(product!==thisProduct.element){
+            /* remove class active for the active product */
+            product.classList.remove(classNames.menuProduct.wrapperActive);
+            /* END: if the active product isn't the element of thisProduct */
+          }
+          /* END LOOP: for each active product */
+        });
+        /* END: click event listener to trigger */
+      });
+    }
+    
   }
 
   const app = {
