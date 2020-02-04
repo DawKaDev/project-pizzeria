@@ -112,7 +112,7 @@
                 {{/each}}
               </ul>
               <div class="amount"> <!-- controls -->
-                <div class="widget-amount"> <!-- widget-amount -->
+                <div class="widget-amount" data-min="{{ amount.min }}" data-max="{{ amount.max }}"> <!-- widget-amount -->
                   <h3 class="product__params-title">Select quantity</h3>
                   <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
                   <input type="text" name="amount" >
