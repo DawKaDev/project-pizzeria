@@ -170,9 +170,9 @@ class Product{
 
     thisProduct.element.dispatchEvent(event);
     //console.log(thisProduct.amountWidget);
-    thisProduct.amount = thisProduct.amountWidget.min;
-    thisProduct.amountWidget.input.value = thisProduct.amountWidget.min;
-    thisProduct.amountWidget.value = thisProduct.amountWidget.min;
+    thisProduct.amount = thisProduct.amountWidget.dom.min;
+    thisProduct.amountWidget.dom.input.value = thisProduct.amountWidget.dom.min;
+    thisProduct.amountWidget.value = thisProduct.amountWidget.dom.min;
     thisProduct.reset();
     thisProduct.processOrder();
     //thisProduct = new Product(thisProduct.id, thisProduct.data);
