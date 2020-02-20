@@ -10,8 +10,8 @@ class CartProduct{
     thisCartProduct.amount = menuProduct.amount;
     thisCartProduct.params = JSON.parse(JSON.stringify(menuProduct.params));
     thisCartProduct.getElements(element);
-    thisCartProduct.dom.amountWidget.setAttribute('data-min', menuProduct.amountWidget.min);
-    thisCartProduct.dom.amountWidget.setAttribute('data-max', menuProduct.amountWidget.max);
+    thisCartProduct.dom.amountWidget.setAttribute(select.widgets.amount.min, menuProduct.amountWidget.min);
+    thisCartProduct.dom.amountWidget.setAttribute(select.widgets.amount.max, menuProduct.amountWidget.max);
     thisCartProduct.initAmountWidget();
     thisCartProduct.initActions();
   }
@@ -23,6 +23,7 @@ class CartProduct{
     thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
     thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
     thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
+    console.log(thisCartProduct.dom.amountWidget);
   }
   initActions(){
     const thisCartProduct = this;
@@ -37,6 +38,7 @@ class CartProduct{
   initAmountWidget(){
     const thisCartProduct = this;
     thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
+    thisCartProduct.amountWidget.value = thisCartProduct.amount;
     thisCartProduct.dom.amountWidget.addEventListener('updated', function(){
       thisCartProduct.amount = thisCartProduct.amountWidget.value;
       thisCartProduct.price = thisCartProduct.amount * thisCartProduct.priceSingle;

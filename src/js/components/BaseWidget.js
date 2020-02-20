@@ -1,9 +1,9 @@
 class BaseWidget {
   constructor(wrapperElement, initialValue){
-    const thisWiget = this;
-    thisWiget.dom = {};
-    thisWiget.dom.wrapper = wrapperElement;
-    thisWiget.correctValue = initialValue;
+    const thisWidget = this;
+    thisWidget.dom = {};
+    thisWidget.dom.wrapper = wrapperElement;
+    thisWidget.correctValue = initialValue;
   }
   get value(){
     const thisWidget = this;
@@ -17,6 +17,11 @@ class BaseWidget {
       thisWidget.announce();
     }
     thisWidget.renderValue();
+  }
+  setValue(value) {
+    const thisWidget = this;
+
+    thisWidget.value = value;
   }
   parseValue(value){
     return parseInt(value);

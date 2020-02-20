@@ -117,44 +117,19 @@ class Product{
   initAmountWidget(){
     const thisProduct = this;
     thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+    thisProduct.amountWidget.value = thisProduct.amountWidgetElem.getAttribute(select.widgets.amount.min);
     thisProduct.amountWidgetElem.addEventListener('updated', function(){
       thisProduct.processOrder();
     });
   }
   reset(){
     const thisProduct = this;
-    const productParams = thisProduct.data.params;
-    thisProduct.params = {};
-    for(let paramId in productParams){
-      const param = productParams[paramId];
-      for(let optionId in param.options){
-        const option = param.options[optionId];
-        //console.log(isDefault);
-        //thisProduct.form.querySelector('#'+optionId).checked = false;
-        if(productParams[paramId].options[optionId].hasOwnProperty('default')){
-          if(param.type == 'select'){
-            const select = thisProduct.form.querySelector('[name='+paramId+']');
-            select.querySelector('[value='+optionId+']').selected = true;
-          }else{
-            thisProduct.form.querySelector('#'+optionId).checked = true;
-          }
-          if(!thisProduct.params[paramId]){
-            thisProduct.params[paramId] = {
-              label: param.label,
-              options: {},
-            };
-          }
-          thisProduct.params[paramId].options[optionId] = option.label;
-        }else{
-          if(param.type == 'select'){
-            const select = thisProduct.form.querySelector('[name='+paramId+']');
-            select.querySelector('[value='+optionId+']').selected = false;
-          }else{
-            thisProduct.form.querySelector('#'+optionId).checked = false;
-          }
-        }
-      }
-    }
+    const container = document.querySelector(select.containerOf.menu);
+    const activeProduct = container.querySelector(select.all.menuProductsActive);
+    new Product(thisProduct.id, thisProduct.data);
+    container.insertBefore(container.lastChild, activeProduct);
+    activeProduct.remove();
+    //thisProduct.params = thisProduct.data.params;
   }
   addToCart(){
     let thisProduct = this;
@@ -169,13 +144,7 @@ class Product{
     });
 
     thisProduct.element.dispatchEvent(event);
-    //console.log(thisProduct.amountWidget);
-    thisProduct.amount = thisProduct.amountWidget.dom.min;
-    thisProduct.amountWidget.dom.input.value = thisProduct.amountWidget.dom.min;
-    thisProduct.amountWidget.value = thisProduct.amountWidget.dom.min;
     thisProduct.reset();
-    thisProduct.processOrder();
-    //thisProduct = new Product(thisProduct.id, thisProduct.data);
   }
 }
 

@@ -1,8 +1,7 @@
-/*eslint no-undef: "error"*/
+/* global flatpickr */
 import {utils} from '../utils.js';
 import BaseWidget from './BaseWidget.js';
 import {select, settings } from '../settings.js';
-//import flatpickr from 'flatpickr';
 
 class DatePicker extends BaseWidget{
   constructor(wrapper){

@@ -1,4 +1,4 @@
-/*eslint no-undef: "error"*/
+/* global rangeSlider */
 import {utils} from '../utils.js';
 import {settings, select} from '../settings.js';
 import BaseWidget from './BaseWidget.js';
@@ -17,7 +17,6 @@ class HourPicker extends BaseWidget{
   }
   initPlugin(){
     const thisWidget = this;
-    //console.log(thisWidget.dom.input);
     rangeSlider.create(thisWidget.dom.input, {});
     thisWidget.dom.input.addEventListener('input', function(event){
       thisWidget.value = event.target.value;

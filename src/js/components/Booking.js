@@ -1,4 +1,4 @@
-import {select, templates} from '../settings.js';
+import {select, templates, settings} from '../settings.js';
 import {utils} from '../utils.js';
 import AmountWidget from './AmountWidget.js';
 import DatePicker from './DatePicker.js';
@@ -19,6 +19,10 @@ class Booking {
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
     thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
+    thisBooking.dom.peopleAmount.setAttribute(select.widgets.amount.min, settings.amountWidget.defaultMin);
+    thisBooking.dom.peopleAmount.setAttribute(select.widgets.amount.max, settings.amountWidget.defaultMax);
+    thisBooking.dom.hoursAmount.setAttribute(select.widgets.amount.min, settings.amountWidget.defaultMin);
+    thisBooking.dom.hoursAmount.setAttribute(select.widgets.amount.max, settings.amountWidget.defaultMax);
     const bookingContainer = document.querySelector(select.containerOf.booking);
     bookingContainer.appendChild(thisBooking.dom.wrapper);
   }

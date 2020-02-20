@@ -103,9 +103,6 @@ class Cart {
     }else{
       thisCart.dom.address.classList.remove('error');
     }
-    //console.log(thisCart.dom.phone.getAttribute('min'));
-    //console.log(address);
-    //console.log(total);
   }
   reset(){
     const thisCart = this;

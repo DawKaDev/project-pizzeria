@@ -6,7 +6,7 @@
         "name": "Zio Stefano's Doughnut",
         "price": 9,
         "amount": {
-          "min": 1,
+          "min": 2,
           "max": 5
         },
         "description": "Treat yourself with this soft, freshly baked cookie. The recipe has been handed down from generation to generation in our family and it has won us several first place prizes in local competitions.",
