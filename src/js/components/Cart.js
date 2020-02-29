@@ -117,10 +117,11 @@ class Cart {
     const thisCart = this;
     const url = settings.db.url + settings.db.order;
     const payload = {
-      adress: thisCart.dom.address,
-      phone: thisCart.dom.phone,
+      address: thisCart.dom.address.value,
+      phone: thisCart.dom.phone.value,
       products: [],
     };
+    
     for(let key of thisCart.renderTotalKeys){
       payload[key] = thisCart[key];
     }
