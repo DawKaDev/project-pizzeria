@@ -2,6 +2,7 @@ import {settings, select, classNames} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+import Homepage from './components/Homepage.js';
 
 const app = {
   initPages: function(){
@@ -40,6 +41,10 @@ const app = {
     for( let link of thisApp.navLinks){
       link.classList.toggle(classNames.nav.active, link.getAttribute('href') == '#' + pageId);
     }
+  },
+  initHomepage: function(){
+    const homepageElem = document.querySelector(select.containerOf.homepage);
+    new Homepage(homepageElem);
   },
   initBooking: function(){
     const bookingElem = document.querySelector(select.containerOf.booking);
@@ -82,9 +87,9 @@ const app = {
     //console.log('classNames:', classNames);
     //console.log('settings:', settings);
     //console.log('templates:', templates);
+    thisApp.initHomepage();
     thisApp.initPages();
     thisApp.initData();
-    //thisApp.initMenu();
     thisApp.initCart();
     thisApp.initBooking();
   },
