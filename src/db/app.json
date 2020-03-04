@@ -278,5 +278,21 @@
           "starters": ["lemonWater"]
         }
       ],
-      "booking": []
-  }
+    "booking": [],
+    "gallery": [
+        "<img src=\"images/gallery/pizza-4.jpg\">",
+        "<img src=\"images/gallery/pizza-5.jpg\">",
+        "<img src=\"images/gallery/pizza-6.jpg\">",
+        "<img src=\"images/gallery/pizza-7.jpg\">",
+        "<img src=\"images/gallery/pizza-8.jpg\">",
+        "<img src=\"images/gallery/pizza-9.jpg\">"
+    ],
+    "quotation": [
+        {
+            "image": "",
+            "title": "review 11",
+            "content": "lorem",
+            "author": "author"
+        }
+    ]
+}
