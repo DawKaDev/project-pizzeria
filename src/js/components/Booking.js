@@ -40,10 +40,7 @@ class Booking {
       fetch(urls.eventsCurrent),
       fetch(urls.eventsRepeat),
     ])
-      .then(function(allResponses){
-        const bookingsResponse = allResponses[0];
-        const eventsCurrentResponse = allResponses[1];
-        const eventsRepeatResponse = allResponses[2];
+      .then(function([bookingsResponse, eventsCurrentResponse, eventsRepeatResponse]){
         return Promise.all([
           bookingsResponse.json(),
           eventsCurrentResponse.json(),
@@ -100,10 +97,10 @@ class Booking {
     const tables = thisBooking.dom.tables.length;
     const range = thisBooking.dom.hourPicker.querySelector('.rangeSlider');
     const scale = 100 / ((closeHour - startHour) / 0.5);
+    const positions = [];
     let style = 'linear-gradient(to right';
     let color = '';
     let index = 0;
-    const positions = [];
     let count = -1;
     let lastCount = -1;
     for(let hour=startHour; hour<closeHour; hour+=0.5){
