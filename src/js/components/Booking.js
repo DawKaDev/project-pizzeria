@@ -139,7 +139,7 @@ class Booking {
     }
     for(let table of tables){
       let tableId = table.getAttribute(settings.booking.tableIdAttribute);
-      table.classList.remove('selected');
+      table.classList.remove(classNames.booking.selected);
       if(!isNaN(tableId)){
         tableId = parseInt(tableId);
       }
@@ -147,17 +147,20 @@ class Booking {
         table.classList.add(classNames.booking.tableBooked);
       } else {
         table.classList.remove(classNames.booking.tableBooked);
-        table.addEventListener('click', function(){
-          tables.forEach(element => {
-            element.classList.remove('selected');
-          });
-          table.classList.add('selected');
-          thisBooking.selectedTable = tableId;
-          thisBooking.validate();
+        table.addEventListener('click', function(event){
+          if (event.target.matches(':not(.' + classNames.booking.tableBooked + ')')) {
+            tables.forEach(element => {
+              element.classList.remove(classNames.booking.selected);
+            });
+            table.classList.add(classNames.booking.selected);
+            thisBooking.selectedTable = tableId;
+            thisBooking.validate();
+          }          
         });
       }
     }
     thisBooking.validate();
+    //thisBooking.initAction();
   }
 
   validate(){
@@ -250,6 +253,7 @@ class Booking {
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
     thisBooking.dom.form = thisBooking.dom.wrapper.querySelector(select.booking.form);
     thisBooking.dom.floor = thisBooking.dom.form.querySelector('.floor-plan');
+    thisBooking.dom.test = thisBooking.dom.wrapper.querySelectorAll('.test li');
     const bookingContainer = document.querySelector(select.containerOf.booking);
     bookingContainer.appendChild(thisBooking.dom.wrapper);
   }
