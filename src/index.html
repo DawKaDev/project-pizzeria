@@ -10,22 +10,20 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="vendor/range-slider.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">
+  <link rel="stylesheet" href="vendor/bootstrap-grid.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <div class="header__wrapper">
-                <div class="logo">
-                    <h1 class="logo__title"><span>Mamma</span>Mia!</h1>
-                    <h2 class="logo__subtitle">the best homemade Italian food</h2>
+            <div class="header__wrapper d-flex flex-wrap">
+                <div class="logo col-12 col-sm-7 justify-content-center">
+                    <h1 class="logo__title mx-auto mx-sm-0 d-table"><span>Mamma</span>Mia!</h1>
+                    <h2 class="logo__subtitle mx-auto mx-sm-0 d-table">the best homemade Italian food</h2>
                 </div>
-                <div class="main-nav">
-                    <a href="#home">Home</a>
-                    <a href="#order">Order</a>
-                    <a href="#booking">Booking</a>
-                </div>
-                <div id="cart" class="cart">
+                
+                <div class="col-12 col-sm-5 pt-5">
+                <div id="cart" class="cart col">
                     <div class="cart__summary">
                         <span class="cart__total-number">0</span>
                         <span class="cart__total-price">Total price: $<strong>0</strong></span>
@@ -59,12 +57,38 @@
                     </div>
                 </div>
             </div>
+            <div class="main-nav">
+                <a href="#home">Home</a>
+                <a href="#order">Order</a>
+                <a href="#booking">Booking</a>
+            </div>
+            </div>
         </div>
     </header>
 
     <div id="pages">
         <section id="home">
-            <div class="homepage container"></div>
+            <div class="homepage container">
+                <div class="home-wrapper">
+                    <div class="menu-wrapper nav d-flex flex-wrap">
+                        <div class="col-12 col-sm-6 pr-sm-2 px-0">
+                            <a class="link-box" href="#order">
+                                <img src="images/gallery/pizza-1.jpg">
+                                <p class="title">order online</p>
+                                <p class="subtitle">Delicious food delivered to your door</p>
+                            </a>
+                        </div>
+                        <div class="col-12 col-sm-6 pl-sm-2 px-0">
+                            <a class="link-box" href="#booking">
+                                <img src="images/gallery/pizza-2.jpg">
+                                <p class="title">book a table</p>
+                                <p class="subtitle">See you soon in place</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="homepage-wrapper"></div>
+                </div>
+            </div>
         </section>
         <section id="order">
             <div id="product-list" class="product-list container"></div>
@@ -75,19 +99,7 @@
     </div>
     
     <script id="template-home-page" type="text/x-handlebars-template">
-        <div class="home-wrapper">
-            <div class="menu-wrapper nav">
-                <a class="link-box" href="#order">
-                    <img src="images/gallery/pizza-1.jpg">
-                    <p class="title">order online</p>
-                    <p class="subtitle">Delicious food delivered to your door</p>
-                </a>
-                <a class="link-box" href="#booking">
-                    <img src="images/gallery/pizza-2.jpg">
-                    <p class="title">book a table</p>
-                    <p class="subtitle">See you soon in place</p>
-                </a>
-            </div>
+        <div>
             <div class="opening-block">
                 <p class="title">Opening hours:</p>
                 <p class="hours">TUE-SUN, 12pm - 12am</p>
@@ -95,11 +107,11 @@
             <div class="slider-container">  
                 {{#each slide }}   
                 <div>              
-                <div class="slide">
-                    <div class="slide__image">
+                <div class="slide flex-wrap d-flex">
+                    <div class="slide__image col-12 col-sm-5 col-md-4 px-0">
                         <img src="{{{ image }}}">
                     </div>
-                    <div class="slide__content">
+                    <div class="slide__content col-12 col-sm-7 col-md-8 px-0 pl-sm-5">
                         <h3 class="slide__title">{{ title }}</h3>
                         <p class="slide__text">{{ content }}</p>
                         <p class="slide__author">- {{ author }}</p>
@@ -110,11 +122,13 @@
             </div>
             <div class="gallery">
                 {{#each images }}
-                <div class="gallery__image">
-                    <img src="{{{this}}}">
-                    <div class="gallery__buttons">
-                        <i class="fa fa-heart"> </i>
-                        <i class="fa fa-share-alt"> </i>
+                <div class="col-12 col-sm-6 col-md-4 p-2">
+                    <div class="gallery__image">
+                        <img src="{{{this}}}">
+                        <div class="gallery__buttons">
+                            <i class="fa fa-heart"> </i>
+                            <i class="fa fa-share-alt"> </i>
+                        </div>
                     </div>
                 </div>
                 {{/each}}
@@ -127,12 +141,12 @@
         <div class="booking-widget">
             <h2 class="page__title no-spacing">Book a table</h2>
             <form class="booking-form">
-                <div class="time-picker">
-                    <div class="date-picker">
+                <div class="time-picker d-flex flex-wrap row">
+                    <div class="date-picker col-12 col-sm-6 mb-4 mb-sm-0">
                         <label class="booking-option-title">Pick a date</label>
                         <input type="text" name="date">
                     </div>
-                    <div class="hour-picker range-slider">
+                    <div class="hour-picker range-slider col-12 col-sm-6">
                         <div class="output"></div>
                         <label class="booking-option-title">Pick a time</label>
                         <input type="range" name="hour" value="12" min="12" max="24" step="0.5">
@@ -146,23 +160,27 @@
                     <div class="object table" data-table="3">table-3</div>
                 </div>
                 <div class="booking-options"> <!-- options -->
-                    <label class="booking-option-title"> <!-- option-row -->
-                    People
-                    <div class="widget-amount people-amount" data-min="1" data-max="4"> <!-- widget-amount -->
-                        <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
-                        <input class="amount" type="text" name="people" value="1">
-                        <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
+                    <div class="col-6 col-md-4">
+                        <label class="booking-option-title"> <!-- option-row -->
+                        People
+                        <div class="widget-amount people-amount" data-min="1" data-max="4"> <!-- widget-amount -->
+                            <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
+                            <input class="amount" type="text" name="people" value="1">
+                            <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
+                        </div>
+                        </label>
                     </div>
-                    </label>
-                    <label class="booking-option-title"> <!-- option-row -->
-                    Hours
-                    <div class="widget-amount hours-amount" data-min="8" data-max="20"> <!-- widget-amount -->
-                        <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
-                        <input class="amount" type="text" name="hours" value="1">
-                        <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
+                    <div class="col-6 col-md-4">
+                        <label class="booking-option-title"> <!-- option-row -->
+                        Hours
+                        <div class="widget-amount hours-amount" data-min="8" data-max="20"> <!-- widget-amount -->
+                            <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
+                            <input class="amount" type="text" name="hours" value="1">
+                            <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
+                        </div>
+                        </label>
                     </div>
-                    </label>
-                    <div> <!-- option-row -->
+                    <div class="col-12 col-md-4"> <!-- option-row -->
                         <span class="booking-option-title">Starters</span>
                         <div class="checkbox"> <!-- checkbox -->
                             <label>
@@ -180,9 +198,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="order-confirmation">
-                    <input type="tel" name="phone" placeholder="Your phone" minlength="9" required>
-                    <input type="text" name="address" placeholder="Your address" minlength="8" required>
+                <div class="order-confirmation d-flex flex-column flex-md-row">
+                    <input class="col mb-2 mb-md-0 mr-0 mr-md-2" type="tel" name="phone" placeholder="Your phone" minlength="9" required>
+                    <input class="col mb-2 mb-md-0 mr-0 mr-md-2" type="text" name="address" placeholder="Your address" minlength="8" required>
                     <button type="submit" class="btn-secondary">Book table</button>
                 </div>
             </form>
@@ -228,7 +246,7 @@
             <p>{{{ description }}}</p>
           </div> <!-- .description -->
           <div class="product__wrapper"> <!-- details -->
-            <form class="product__order">
+            <form class="product__order col-12 col-sm-6 order-1 order-sm-0">
               <ul class="product__params"> <!-- params -->
                 {{#each params as |param paramId| }}
                 {{#ifEquals type "checkboxes"}}
@@ -286,7 +304,7 @@
                 </div>
               </div>
             </form>
-            <div class="product__images {{ class }}"> <!-- images -->
+            <div class="product__images {{ class }} col-12 col-sm-6 order-0 order-sm-1"> <!-- images -->
               {{#each images}}
               {{{ this }}}
               {{/each}}

@@ -18,15 +18,19 @@
   &__name {
     @extend .h1;
     position: relative;
+    display: flex;
   }
 
   &__icon {
-    position: absolute;
+    position: relative;
+    display: flex;
+    align-items: center;
     color: $color-main;
-    right: (-$base-size * 5);
-    top: $base-size;
+    //right: (-$base-size * 5);
+    //top: $base-size;
     font-size: ($base-size * 1.5);
     transition: $transition;
+    padding: 0 15px;
   }
 
   &__base-price {
@@ -42,6 +46,7 @@
     @include flex(row, center, space-between);
     @include accordion-closed();
     animation: flipdown 0.5s ease both;
+    flex-wrap: wrap;
   }
 
   &__params {
@@ -59,6 +64,7 @@
     width: calc(100% - 400px);
     opacity: 0;
     transition: opacity 200ms;
+    padding: 0;
   }
 
   &__total-price {
