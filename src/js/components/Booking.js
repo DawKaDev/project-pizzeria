@@ -9,6 +9,7 @@ class Booking {
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
+    thisBooking.activeTables();
   }
   getData(){
     const thisBooking = this;
@@ -147,20 +148,28 @@ class Booking {
         table.classList.add(classNames.booking.tableBooked);
       } else {
         table.classList.remove(classNames.booking.tableBooked);
-        table.addEventListener('click', function(event){
-          if (event.target.matches(':not(.' + classNames.booking.tableBooked + ')')) {
-            tables.forEach(element => {
-              element.classList.remove(classNames.booking.selected);
-            });
-            table.classList.add(classNames.booking.selected);
-            thisBooking.selectedTable = tableId;
-            thisBooking.validate();
-          }          
-        });
       }
     }
     thisBooking.validate();
-    //thisBooking.initAction();
+  }
+
+  activeTables(){
+    const thisBooking = this;
+    const tables = thisBooking.dom.tables;
+    for(let table of tables){
+      let tableId = table.getAttribute(settings.booking.tableIdAttribute);
+      table.addEventListener('click', function(){
+        if(table.classList.contains(classNames.booking.tableBooked)){
+          return;
+        }
+        tables.forEach(element => {
+          element.classList.remove(classNames.booking.selected);
+        });
+        table.classList.add(classNames.booking.selected);
+        thisBooking.selectedTable = tableId;
+        thisBooking.validate();         
+      });
+    }
   }
 
   validate(){
